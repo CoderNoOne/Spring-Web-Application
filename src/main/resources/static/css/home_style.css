@@ -11,6 +11,22 @@
     background: linear-gradient(to bottom, #c62d1f 5%, #824844 100%);
 }
 
+
+.form_instruction{
+    font-family: "Comic Sans MS";
+    color:burlywood;
+}
+h2, h3 {
+    font-family: "Comic Sans MS";
+    color: #8a2a21;
+}
+
+.form_header {
+    font-family: "Comic Sans MS";
+    color: orangered;
+
+}
+
 #h1_header {
     text-align: center;
     vertical-align: text-before-edge;

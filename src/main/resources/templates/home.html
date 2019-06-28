@@ -73,99 +73,46 @@
     </div>
     <hr>
     <div>
-        <div style="float: left; width: 35% ;margin-left: 15%"><p style="margin-left: 20%">PANEL REJESTRACYJNY</p>
+        <div style="float: left; width: 35% ;margin-left: 15%"><p class='form_header' style="margin-left: 30%">PANEL
+            REJESTRACYJNY</p>
             <br><br>
-            <button class="button" onclick="showLoginForm()">Pokaz panel rejestracyjny</button>
+            <button class="button" onclick="showLoginForm()">Pokaż panel rejestracyjny</button>
             <button class="button" onclick="closeLoginForm()">Ukryj panel rejestracyjny</button>
             <div id="loginForm" style="display: none">
-                <p style="margin-left: 10%">Wpisz odpowiednie dane do rejestracji</p>
-                <form style="float: left; width: 35% ;margin-left: 15%" action="saved.html" th:method="post"
+                <p class='form_instruction' style="margin-left: 20%">Wpisz odpowiednie dane do rejestracji</p>
+                <form style="float: left; width: 35% ;margin-left: 30%" action="saved.html" th:method="post"
                       th:action="@{/save}" th:object="${userRegister}">
                     <input type="text" th:field="*{firstName}" placeholder="Imię 2-25 znakow"/><br/>
                     <input type="text" th:field="*{lastName}" placeholder="Nazwisko 2-25 znakow"/><br/>
                     <input type="email" th:field="*{emailAddress}"
                            placeholder="Adres email tylko gmail 5-30 znakow"/><br/>
                     <input type="password" th:field="*{password}" placeholder="Hasło min 5 znaków"/><br/>
-                    <input class="button" style="text-align: center ; margin-left: 25%" type="submit"
+                    <input class="button" style="text-align: center ; margin-left: 7.5% ; margin-top: 5%" type="submit"
                            value="Zarejestruj się"/></form>
             </div>
             <br>
 
         </div>
-        <div style="float: right; width: 35%; margin-right: 15%"><p style="margin-left: 15%">PANEL LOGOWANIA</p>
+        <div style="float: right; width: 35%; margin-right: 10%"><p class="form_header" style="margin-left: 25%">PANEL
+            LOGOWANIA</p>
             <br><br>
-            <button class="button" onclick="showRegisterForm()">Pokaz panel logowania</button>
+            <button class="button" onclick="showRegisterForm()">Pokaż panel logowania</button>
             <button class="button" onclick="closeRegisterForm()">Ukryj panel logowania</button>
             <div id="registerForm" style="display: none">
-                <p style="margin-left: 10%">Wpisz wymagane dane do logowania</p>
+                <p class='form_instruction' style="margin-left: 20%">Wpisz wymagane dane do logowania</p>
 
-                <form style="margin-left: 15%" action="logged.html" th:method="post" th:action="@{/log}"
+                <form style="margin-left: 25%; margin-top: 10%" action="logged.html" th:method="post"
+                      th:action="@{/log}"
                       th:object="${userLogin}">
                     <input type="email" th:field="*{emailAddress}" placeholder="Adres email"/><br/>
                     <input type="password" th:field="*{password}" placeholder="Hasło"/><br/>
-                    <input class="button" style="text-align: center; margin-left: 12.5%" type="submit"
+                    <input class="button" style="text-align: center; margin-left: 10% ; margin-top: 6%" type="submit"
                            value="Zaloguj się"/></form>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-
-   var image = document.getElementById("image");
-   var images = [
-       "../images/pic1.jpg",
-       "../images/shopping2.png"
-   ];
-
-   function change() {
-       var strings = images.reverse();
-       image.src = strings[0];
-   }
-
-   setInterval(change, 2000);
-
-    change();
-    var link = document.getElementById('link');
-
-    link.addEventListener('click', function () {
-        this.style.color = 'chocolate';
-        alert('Przekierowanie do strony zewnętrznej');
-    });
-
-    function showRegisterForm() {
-        document.getElementById("registerForm").style.display = 'block';
-    }
-
-    function closeRegisterForm() {
-        document.getElementById('registerForm').style.display = 'none';
-    }
-
-    function showLoginForm() {
-        document.getElementById("loginForm").style.display = 'block';
-    }
-
-    function closeLoginForm() {
-        document.getElementById('loginForm').style.display = 'none';
-    }
-
-    window.onscroll = function () {
-        myFunction()
-    };
-
-    var header = document.getElementById("header");
-
-    var sticky = header.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset >= sticky) {
-            header.classList.add("sticky")
-        } else {
-            header.classList.remove("sticky");
-        }
-    }
-
-</script>
-
+<script th:src="@{/js/home.js}"></script>
 </body>
 </html>
