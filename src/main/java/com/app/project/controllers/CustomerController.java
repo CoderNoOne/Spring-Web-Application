@@ -42,7 +42,7 @@ public class CustomerController {
     }
 
     customerService.saveCustomerIntoDb(customer);
-    var totalNumberOfRegisteredCustomers = customerService.getTotalNumberOfRegisteredCustomers();
+    Integer totalNumberOfRegisteredCustomers = customerService.getTotalNumberOfRegisteredCustomers();
     model.addAttribute("totalUsers", totalNumberOfRegisteredCustomers);
 
     return "saved";
