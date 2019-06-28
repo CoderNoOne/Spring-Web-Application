@@ -7,10 +7,19 @@ body {
     height: 100%;
 }
 
-#myChart1 {
+
+.table_header{
     font-family: "Comic Sans MS";
     color: #942911;
-
+    font-size: 150%;
+    font-weight: bold;
+}
+.col-md-4 {
+    color:#942911;
+}
+#myChart1 {
+    font-family: "Comic Sans MS";
+    color: #8a2a21;
 }
 
 #instruction_for_product_input_text{

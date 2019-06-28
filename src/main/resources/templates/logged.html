@@ -12,13 +12,21 @@
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
     <style>
         .vl {
-            border-right: 6px solid chocolate;
-            height: 750px;
+            margin-top: 25%;
+            border-right: 5px solid chocolate;
+            height: 500px;
         }
 
         table.center {
             margin-left: auto;
             margin-right: auto;
+            color: blueviolet;
+            font-family: "Comic Sans MS";
+            font-size: 125%;
+            border-width: 5px;
+            border-color: #942911;
+            padding: 2px;
+            border-style: dot-dot-dash;
         }
     </style>
 </head>
@@ -49,7 +57,8 @@
 
             <form th:method="post" th:action="@{${'/addProduct/'+userLogin.emailAddress}}" th:object="${product}">
 
-                <input class="input" style="width: 70%; margin-left: 10% ; margin-top: 5% ; height: 50px" type="text" th:field="*{name}"
+                <input class="input" style="width: 70%; margin-left: 10% ; margin-top: 5% ; height: 50px" type="text"
+                       th:field="*{name}"
                        placeholder="Nazwa"/><br/>
 
                 <select class="input" style="width: 70%; height: 50px ; margin-left: 10% " th:field="*{category}">
@@ -58,7 +67,8 @@
                             th:text="${role}"></option>
                 </select>
                 <br/>
-                <input class="input" style="width: 70%; height: 50px ; margin-left: 10%" type="number" th:field="*{price}"
+                <input class="input" style="width: 70%; height: 50px ; margin-left: 10%" type="number"
+                       th:field="*{price}"
                        placeholder="Cena"/><br/>
                 <input id="add_button" style="text-align: center; width: 70% ; margin-top: 10%; margin-left: 10%"
                        type="submit" value="Dodaj produkt"/>
@@ -130,9 +140,8 @@
 
 <hr>
 
-<!--    <div class="row">-->
 <div th:if="${!productList.isEmpty()}" class="col-md-6" id="tab1">
-    <p style="text-align: center">TWOJA LISTA ZAKUPÓW</p>
+    <p class="table_header" style="text-align: center">TWOJA LISTA ZAKUPÓW</p>
     <table class="center" th:margin="1500px " th:border="1">
         <thead>
         <tr>
@@ -143,56 +152,26 @@
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each="produkt : ${productList}"
-            pages:excel="name, category, price">
+        <tr th:each="produkt : ${productList}">
             <td th:text="${produkt.name}">Nazwa</td>
             <td th:text="${produkt.category}">kategoria</td>
             <td th:text="${produkt.price}">cena</td>
-
-        <tr>
-            <td>Table</td>
-            <td>Apparels</td>
-            <td>8</td>
-            <td>500 €</td>
-        </tr>
-        <tr>
-            <td>Wardrobe</td>
-            <td>Apparels</td>
-            <td>15</td>
-            <td>650 €</td>
-        </tr>
         </tbody>
     </table>
 </div>
 <div th:if="${!sumPriceByCategoryByClient.isEmpty()}" class="col-md-6">
-    <p style="text-align: center">SUMA ZA ZAKUPY WEDŁUG KATEGORII</p>
+    <p class="table_header" style="text-align: center">SUMA ZA ZAKUPY WEDŁUG KATEGORII</p>
     <table class="center" th:margin="500px " th:border="1">
-
         <thead>
         <tr>
             <th>Kategoria</th>
             <th>Suma</th>
-
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each="entry : ${sumPriceByCategoryByClient}"
-            pages:excel="name, category, price">
+        <tr th:each="entry : ${sumPriceByCategoryByClient}">
             <td th:text="${entry.getKey()}">Kategoria</td>
             <td th:text="${entry.getValue()}">Suma</td>
-
-        <tr>
-            <td>Table</td>
-            <td>Apparels</td>
-            <td>8</td>
-            <td>500 €</td>
-        </tr>
-        <tr>
-            <td>Wardrobe</td>
-            <td>Apparels</td>
-            <td>15</td>
-            <td>650 €</td>
-        </tr>
         </tbody>
     </table>
 </div>
