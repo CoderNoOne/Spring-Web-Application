@@ -30,8 +30,8 @@ public class CustomerService {
     return Objects.nonNull(customerRepository.findCustomerByEmailAddress(customer.getEmailAddress()));
   }
 
-  public CustomerDto getUserByLoggingDetails(Customer customer){
-    return customerMapper.mapCustomerToCustomerDto(customerRepository.findCustomerByEmailAddressAndPassword(customer.getEmailAddress()));
+  public CustomerDto getUserByEmail(String email){
+    return customerMapper.mapCustomerToCustomerDto(customerRepository.findCustomerByEmailAddress(email));
   }
 
   public Integer getTotalNumberOfRegisteredCustomers(){

@@ -3,8 +3,6 @@ package com.app.project.controllers;
 import com.app.project.dto.CustomerDto;
 import com.app.project.dto.ProductDto;
 import com.app.project.exceptions.NotValidProductException;
-import com.app.project.mapper.CustomerMapper;
-import com.app.project.mapper.ProductMapper;
 import com.app.project.model.Customer;
 import com.app.project.model.Product;
 import com.app.project.service.ProductService;

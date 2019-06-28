@@ -60,9 +60,8 @@ public final class GlobalControllerUtil {
     return passwordEncoder.encode(password);
   }
 
-  public boolean doPasswordMatches(String password, CustomerDto customerDto) {
-    return passwordEncoder.matches(password, customerDto.getPassword());
-
+  public boolean doPasswordMatches(String passwordFromForm, String passwordFromDb) {
+    return passwordEncoder.matches(passwordFromForm, passwordFromDb);
   }
 }
 

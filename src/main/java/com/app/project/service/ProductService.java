@@ -5,6 +5,7 @@ import com.app.project.model.Category;
 import com.app.project.model.Customer;
 import com.app.project.model.Product;
 import com.app.project.repository.ProductRepository;
+import com.app.project.repository.ProductRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +20,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
+  private ProductRepository productRepository;
 
   @PersistenceContext
   private EntityManager entityManager;
-
-  private ProductRepository productRepository;
 
   @Autowired
   public ProductService(ProductRepository productRepository) {

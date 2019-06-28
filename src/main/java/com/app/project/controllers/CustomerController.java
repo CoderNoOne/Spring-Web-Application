@@ -52,16 +52,13 @@ public class CustomerController {
   public String login(@ModelAttribute(name = "userLogin") CustomerDto customerDto, RedirectAttributes redirectAttributes) {
 
 
-//    customerDto.setPassword(globalControllerUtil.encodePassword(customerDto.getPassword()))/;
-
-    customerService.getUserByLoggingDetails(globalControllerUtil.mapCustomerDtoToCustomer(customerDto)).getEmailAddress().equals(customerDto.getEmailAddress())
-            &&
-    customerDto = customerService.getUserByLoggingDetails(globalControllerUtil.mapCustomerDtoToCustomer(customerDto));
-    if (customerDto == null) {
+    CustomerDto customerDtoFromDb = customerService.getUserByEmail(customerDto.getEmailAddress());
+    if (customerDtoFromDb == null) {
       return "userNotFound";
     }
 
-    redirectAttributes.addFlashAttribute("userLogin", customerDto);
-    return "redirect:/products";
+    redirectAttributes.addFlashAttribute("userLogin", customerDtoFromDb);
+    return globalControllerUtil.doPasswordMatches(customerDto.getPassword(), customerDtoFromDb.getPassword()) ?
+            "redirect:/products" : "bad_password";
   }
 }
