@@ -76,10 +76,11 @@
         <div style="float: left; width: 35% ;margin-left: 15%"><p class='form_header' style="margin-left: 30%">PANEL
             REJESTRACYJNY</p>
             <br><br>
-            <button class="button" onclick="showLoginForm()">Pokaż panel rejestracyjny</button>
-            <button class="button" onclick="closeLoginForm()">Ukryj panel rejestracyjny</button>
-            <div id="loginForm" style="display: none">
-                <p class='form_instruction' style="margin-left: 20%">Wpisz odpowiednie dane do rejestracji</p>
+            <button class="button" onclick="showRegisterForm()">Pokaż panel rejestracyjny</button>
+            <button class="button" onclick="closeRegisterForm()">Ukryj panel rejestracyjny</button>
+            <div id="registerForm" style="display: none">
+                <p id="form_register_instruction_text" class='form_instruction' style="margin-left: 20%">Wpisz
+                    odpowiednie dane do rejestracji</p>
                 <form style="float: left; width: 35% ;margin-left: 30%" action="saved.html" th:method="post"
                       th:action="@{/save}" th:object="${userRegister}">
                     <input type="text" th:field="*{firstName}" placeholder="Imię 2-25 znakow"/><br/>
@@ -96,10 +97,11 @@
         <div style="float: right; width: 35%; margin-right: 10%"><p class="form_header" style="margin-left: 25%">PANEL
             LOGOWANIA</p>
             <br><br>
-            <button class="button" onclick="showRegisterForm()">Pokaż panel logowania</button>
-            <button class="button" onclick="closeRegisterForm()">Ukryj panel logowania</button>
-            <div id="registerForm" style="display: none">
-                <p class='form_instruction' style="margin-left: 20%">Wpisz wymagane dane do logowania</p>
+            <button class="button" onclick="showLoginForm()">Pokaż panel logowania</button>
+            <button class="button" onclick="closeLoginForm()">Ukryj panel logowania</button>
+            <div id="loginForm" style="display: none">
+                <p id="form_login_instruction_text" class='form_instruction' style="margin-left: 20%">Wpisz wymagane
+                    dane do logowania</p>
 
                 <form style="margin-left: 25%; margin-top: 10%" action="logged.html" th:method="post"
                       th:action="@{/log}"

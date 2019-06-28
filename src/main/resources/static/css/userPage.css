@@ -7,13 +7,17 @@
      height: 100%;
  }
 
+ .myButton{
+     font-family: "Comic Sans MS";
+     color: orange;
+ }
 
 h1 {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Comic Sans MS";
     font-weight: 100;
     font-size: 3em;
     text-align: center;
