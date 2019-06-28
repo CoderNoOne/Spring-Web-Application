@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://previews.123rf.com/images/abstract412/abstract4121801/abstract412180100037/94549076-welcome-aboard-colorful-inscription-isolated-welcome-aboard-calligraphy-vector-illustration-welcome-.jpg');
+            background-size: cover;
+        }
+        h1 span {
+            display: inline-block;
+            position: relative;
+            padding: 0.5em 1em;
+        }
+
+        h1 span:before {
+            display: block;
+            content: '';
+            width: 110%;
+            margin-left: -5%;
+            margin-bottom: 5%;
+            border-top: 1px solid crimson;
+            -webkit-animation: 2.5s draw;
+            animation: 2.5s draw;
+        }
+
+        h1 span:after {
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            border-bottom: 1px solid crimson;
+            -webkit-animation: 2.5s draw-bottom;
+            animation: 2.5s draw-bottom;
+        }
+
+        @keyframes draw {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 110%;
+            }
+        }
+
+        @keyframes draw-bottom {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<h1 style="text-align: center"><span>Zostałeś dodany do bazy danych</span></h1>
+<p th:text="'Jest juz nas: ' + ${totalUsers}"></p>
+<div class="row">
+    <a href="/home">Powrót do strony głownej</a>
+</div>
+</body>
+</html>

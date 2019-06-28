@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home_styles.css}"/>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="header" style="background: gainsboro">
+    <h1 style="text-align: center ; vertical-align: text-before-edge " ><span>APLIKACJA DO ZARZĄDZANIA LISTĄ ZAKUPÓW</span></h1>
+</div>
+
+<div id="container">
+    <div id="content">
+        <div class="featured">
+            <img id="image" th:src="@{/images/pic1.jpg}"/>
+            <h3 style="text-align: center">KRÓTKI OPIS APLIKACJI</h3>
+            <p style="justify-content: center"> Aplikacja pozwala na symulację rejestracji oraz logowania do systemu
+                zarządzania listą zakupów. Prezentowane są również szczegółowe statystyki dla zalogowanego użytkownika
+                oraz statystyki ogólne
+                dla zarejstrowanych</p>
+            <hr>
+
+            <a href="https://github.com/CoderNoOne" id="link"
+               style="text-align: center; margin-left:20% ; font-size: 200%">Link do kodu
+                źródłowego na
+                githubie</a>
+
+        </div>
+
+        <div class="list">
+            <h2 class="articletitle" style="text-align: center"> 3 PROSTE ZASADY ROBIENIA ZAKUPÓW</h2>
+            <hr>
+            <ul>
+                <li>1. Po pierwsze, właściwa organizacja</a></li>
+                <p style="text-align: justify">Właściwa organizacja to gwarancja udanych i rozsądnych zakupów.
+                    Warto opracować własną metodę robienia zakupów, dzięki której za każdym razem będziemy
+                    w stanie spokojnie i bez stresu kupić potrzebne produkty. Od czego zacząć?
+                    Lista zawierająca spis wszystkich potrzeb ułatwi nam robienie zakupów.
+                    Jeśli będziemy się jej trzymać, nie wrócimy do domu z niepotrzebnymi produktami.</p>
+                <hr>
+                <li>2. Po drugie, dużo cierpliwości</a></li>
+                <p style="text-align: justify">Jeśli chcemy robić rozsądne zakupy, musimy uzbroić się w cierpliwość.
+                    Wbrew pozorom szybkie
+                    zakupy wcale nie są najkorzystniejsze dla portfela. Kiedy brakuje nam czasu, stajemy się
+                    poirytowani i tracimy racjonalne podejście. Pod wpływem impulsu wkładamy do koszyka kolejne
+                    produkty,
+                    a w pośpiechu nie dostrzegamy korzystniejszych ofert. Wkrótce okazuje się, że z szybkich zakupów
+                    wracamy
+                    z rzeczami, których wcale nie potrzebujemy i z rachunkiem wyższym, niż zakładaliśmy</p>
+                <hr>
+                <li>3. Po trzecie, zwróć uwagę, co znajduje się na niższych półkach</li>
+                <p style="text-align: justify">Producenci i handlowcy chcą, abyśmy na zakupach wydali jak najwięcej.
+                    Pomagają
+                    im w tym marketingowcy, właśnie dlatego w sklepach regularnie pojawiają się promocje.
+                    Niższe ceny kuszą, ale zanim coś kupimy, zastanówmy się, czy rzeczywiście tego potrzebujemy.
+                    Jeśli atrakcyjna oferta dotyczy produktów, które regularnie kupujemy lub rzeczy,
+                    które planowaliśmy nabyć, warto z niej skorzystać. Często jednak ulegamy magii promocyjnych
+                    cen, kupując zbędne produkty.</p>
+            </ul>
+        </div>
+        <h2 th:align="center">ŻYCZYMY WSZYSTKIM UDANYCH ZAKUPÓW!</h2>
+    </div>
+    <hr>
+    <div>
+        <div style="float: left; width: 35% ;margin-left: 15%"><p style="margin-left: 20%">PANEL REJESTRACYJNY</p>
+            <br><br>
+            <button onclick="showLoginForm()">Pokaz panel rejestracyjny</button>
+            <button onclick="closeLoginForm()">Ukryj panel rejestracyjny</button>
+            <div id="loginForm" style="display: none">
+                <p style="margin-left: 10%">Wpisz odpowiednie dane do rejestracji</p>
+                <form style="float: left; width: 35% ;margin-left: 15%" action="saved.html" th:method="post" th:action="@{/save}" th:object="${userRegister}">
+                    <input type="text" th:field="*{firstName}" placeholder="Imię 2-25 znakow"/><br/>
+                    <input type="text" th:field="*{lastName}" placeholder="Nazwisko 2-25 znakow"/><br/>
+                    <input type="email" th:field="*{emailAddress}" placeholder="Adres email tylko gmail 5-30 znakow"/><br/>
+                    <input type="password" th:field="*{password}" placeholder="Hasło min 5 znaków"/><br/>
+                    <input style="text-align: center ; margin-left: 25%" type="submit" value="Zarejestruj się"/></form>
+            </div>
+            <br>
+
+        </div>
+        <div style="float: right; width: 35%; margin-right: 15%"><p style="margin-left: 15%">PANEL LOGOWANIA</p>
+            <br><br>
+            <button onclick="showRegisterForm()">Pokaz panel logowania</button>
+            <button onclick="closeRegisterForm()">Ukryj panel logowania</button>
+            <div id="registerForm" style="display: none">
+                <p style="margin-left: 10%" >Wpisz wymagane dane do logowania</p>
+
+                <form style="margin-left: 15%" action="logged.html" th:method="post" th:action="@{/log}" th:object="${userLogin}">
+                    <input type="email" th:field="*{emailAddress}" placeholder="Adres email"/><br/>
+                    <input type="password" th:field="*{password}" placeholder="Hasło"/><br/>
+                    <input style="text-align: center; margin-left: 12.5%" type="submit" value="Zaloguj się"/></form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    // function displayNextImage() {
+    //     x = (x === images.length - 1) ? 0 : x + 1;
+    //     document.getElementById("image").src = images[x];
+    // }
+    //
+    // function startTimer() {
+    //     setInterval(displayNextImage, 3000);
+    // }
+    //
+    // var images = [], x = -1;
+    // images[0] = "pic1.jpg";
+    // images[1] = "github.png";
+    // // images[2] = "image3.jpg";
+
+    var link = document.getElementById('link');
+
+    link.addEventListener('click', function () {
+        this.style.color = 'chocolate';
+        alert('Przekierowanie do strony zewnetrznej');
+    });
+
+    function showRegisterForm() {
+        document.getElementById("registerForm").style.display = 'block';
+    }
+
+    function closeRegisterForm() {
+        document.getElementById('registerForm').style.display = 'none';
+    }
+
+    function showLoginForm() {
+        document.getElementById("loginForm").style.display = 'block';
+    }
+
+    function closeLoginForm() {
+        document.getElementById('loginForm').style.display = 'none';
+    }
+
+    window.onscroll = function () {
+        myFunction()
+    };
+
+    var header = document.getElementById("header");
+
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky")
+        } else {
+            header.classList.remove("sticky");
+        }
+    }
+
+</script>
+
+</body>
+</html>

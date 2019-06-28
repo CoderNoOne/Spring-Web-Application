@@ -1,0 +1,68 @@
+
+/* Ustalamy rozmiar górnej belki i jej automatyczne centrowanie */
+#header{
+    width: 100%;
+    height: 80px;
+    /*margin: auto;*/
+}
+/* Logo wyrównujemy do lewej strony belki */
+#logo{
+    display: inline;
+    float: left;
+}
+/* a wyszukiwarkę do prawej, ustawiając także jej rozmiar i margines */
+#searchbox {
+    display: inline-block;
+    float: right;
+    margin-top: 30px;
+    width: 100%;
+}
+/* Ustalamy także szerokość głównego kontenera na równy ramce */
+#container {
+    width: 100%;
+    margin: auto;
+}
+/* Treść powinna być po lewej stronie i zajmować 80% szerokości okna
+dodatkowo przyda się kolor tła */
+#content{
+    display: inline-block;,
+float: left;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f8f8;
+    /*background-color: #eaeaea;*/
+    /*background-image: linear-gradient(315deg, orangered 0%, #dfdfdf 74%);*/
+}
+/* Ustawiamy wyrównanie wyróżnionego artykułu */
+.featured {
+    float: left;
+}
+/* Odstęp i rozmiar wyróżnionej grafiki */
+.featured img {
+    float: left;
+    margin: 10px;
+    width: 300px;
+}
+/* Usuwamy wypunktowania i marginesy ze wszystkich list */
+ul{
+    padding: 0;
+    list-style-type: none;
+}
+/* Ramkę w okół listy artykułów ustawiamy na 10px */
+.list {
+    margin: 10px;
+}
+/* wysokość kolejnych elementów listy oraz odstęp od lewej strony */
+.list ul li {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+/* ustawiamy różne kolory dla parzystych i nieparzystych elementów list */
+ul li:nth-child(odd) {
+    background-color: #dfdfdf;
+}
+ul li:nth-child(even) {
+    background-color: #eaeaea;
+}
+

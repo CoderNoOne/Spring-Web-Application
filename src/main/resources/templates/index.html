@@ -1,0 +1,46 @@
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>Strona główna</title>
+</head>
+
+<body>
+<div id="header">
+    <img id="logo" src="logo.png" />
+    <form id="searchbox"><input type="search" placeholder="Szukaj"></form>
+</div>
+<!-- Główny kontener -->
+<div id="container">
+    <!-- Główna kolumna treści -->
+    <div id="content">
+        <!-- Wyróżniony artykuł -->
+        <div class="featured">
+            <img src="article.png" />
+            <p>Krótkie streszczenie artykułu Krótkie streszczenie artykułu Krótkie streszczenie artykułu Krótkie streszczenie artykułu </p>
+            <p>Krótkie streszczenie artykułu Krótkie streszczenie artykułu Krótkie streszczenie artykułu Krótkie streszczenie artykułu</p>
+            <a href="#">Link do artykułu</a>
+        </div>
+        <!-- Lista pozostałych artykułów -->
+        <div class="list">
+            <h2 class="articletitle">Najnowsze artykuły</h2>
+            <ul>
+                <li><a href="#">Programowanie jest proste!</a></li>
+                <li><a href="#">Rusza Intel Extreme Masters</a></li>
+                <li><a href="#">Premiera GTA V znowu opóźniona</a></li>
+                <li><a href="#">Link do kolejnego artykułu</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Boczna nawigacja -->
+    <div class="sidebar">
+        <h2 class="navbartitle">Nawigacja</h2>
+        <ul>
+            <li><a href="#">Kategoria 1</a></li>
+            <li><a href="#">Kategoria 2</a></li>
+            <li><a href="#">Kategoria 3</a></li>
+            <li><a href="#">Kategoria 4</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
