@@ -2,7 +2,6 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home_styles.css}"/>
     <meta charset="UTF-8">
     <title>Strona główna</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,17 +12,18 @@
             width: 100%;
         }
     </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home_style.css}"/>
 </head>
 
 <body>
-<div id="header" style="background: gainsboro">
-    <h1 style="text-align: center ; vertical-align: text-before-edge " ><span>APLIKACJA DO ZARZĄDZANIA LISTĄ ZAKUPÓW</span></h1>
+<div id="header">
+    <h1 id='h1_header'><span>APLIKACJA DO ZARZĄDZANIA LISTĄ ZAKUPÓW</span></h1>
 </div>
 
 <div id="container">
     <div id="content">
         <div class="featured">
-            <img id="image" th:src="@{/images/pic1.jpg}"/>
+            <img id="image" th:src="@{/images/shopping2.png}"/>
             <h3 style="text-align: center">KRÓTKI OPIS APLIKACJI</h3>
             <p style="justify-content: center"> Aplikacja pozwala na symulację rejestracji oraz logowania do systemu
                 zarządzania listą zakupów. Prezentowane są również szczegółowe statystyki dla zalogowanego użytkownika
@@ -42,14 +42,14 @@
             <h2 class="articletitle" style="text-align: center"> 3 PROSTE ZASADY ROBIENIA ZAKUPÓW</h2>
             <hr>
             <ul>
-                <li>1. Po pierwsze, właściwa organizacja</a></li>
+                <li><p class='article_header'>1. Po pierwsze, właściwa organizacja</p></li>
                 <p style="text-align: justify">Właściwa organizacja to gwarancja udanych i rozsądnych zakupów.
                     Warto opracować własną metodę robienia zakupów, dzięki której za każdym razem będziemy
                     w stanie spokojnie i bez stresu kupić potrzebne produkty. Od czego zacząć?
                     Lista zawierająca spis wszystkich potrzeb ułatwi nam robienie zakupów.
                     Jeśli będziemy się jej trzymać, nie wrócimy do domu z niepotrzebnymi produktami.</p>
                 <hr>
-                <li>2. Po drugie, dużo cierpliwości</a></li>
+                <li><p class='article_header'>2. Po drugie, dużo cierpliwości</p></li>
                 <p style="text-align: justify">Jeśli chcemy robić rozsądne zakupy, musimy uzbroić się w cierpliwość.
                     Wbrew pozorom szybkie
                     zakupy wcale nie są najkorzystniejsze dla portfela. Kiedy brakuje nam czasu, stajemy się
@@ -59,7 +59,7 @@
                     wracamy
                     z rzeczami, których wcale nie potrzebujemy i z rachunkiem wyższym, niż zakładaliśmy</p>
                 <hr>
-                <li>3. Po trzecie, zwróć uwagę, co znajduje się na niższych półkach</li>
+                <li><p class='article_header'>3. Po trzecie, zwróć uwagę, co znajduje się na niższych półkach </p></li>
                 <p style="text-align: justify">Producenci i handlowcy chcą, abyśmy na zakupach wydali jak najwięcej.
                     Pomagają
                     im w tym marketingowcy, właśnie dlatego w sklepach regularnie pojawiają się promocje.
@@ -75,58 +75,62 @@
     <div>
         <div style="float: left; width: 35% ;margin-left: 15%"><p style="margin-left: 20%">PANEL REJESTRACYJNY</p>
             <br><br>
-            <button onclick="showLoginForm()">Pokaz panel rejestracyjny</button>
-            <button onclick="closeLoginForm()">Ukryj panel rejestracyjny</button>
+            <button class="button" onclick="showLoginForm()">Pokaz panel rejestracyjny</button>
+            <button class="button" onclick="closeLoginForm()">Ukryj panel rejestracyjny</button>
             <div id="loginForm" style="display: none">
                 <p style="margin-left: 10%">Wpisz odpowiednie dane do rejestracji</p>
-                <form style="float: left; width: 35% ;margin-left: 15%" action="saved.html" th:method="post" th:action="@{/save}" th:object="${userRegister}">
+                <form style="float: left; width: 35% ;margin-left: 15%" action="saved.html" th:method="post"
+                      th:action="@{/save}" th:object="${userRegister}">
                     <input type="text" th:field="*{firstName}" placeholder="Imię 2-25 znakow"/><br/>
                     <input type="text" th:field="*{lastName}" placeholder="Nazwisko 2-25 znakow"/><br/>
-                    <input type="email" th:field="*{emailAddress}" placeholder="Adres email tylko gmail 5-30 znakow"/><br/>
+                    <input type="email" th:field="*{emailAddress}"
+                           placeholder="Adres email tylko gmail 5-30 znakow"/><br/>
                     <input type="password" th:field="*{password}" placeholder="Hasło min 5 znaków"/><br/>
-                    <input style="text-align: center ; margin-left: 25%" type="submit" value="Zarejestruj się"/></form>
+                    <input class="button" style="text-align: center ; margin-left: 25%" type="submit"
+                           value="Zarejestruj się"/></form>
             </div>
             <br>
 
         </div>
         <div style="float: right; width: 35%; margin-right: 15%"><p style="margin-left: 15%">PANEL LOGOWANIA</p>
             <br><br>
-            <button onclick="showRegisterForm()">Pokaz panel logowania</button>
-            <button onclick="closeRegisterForm()">Ukryj panel logowania</button>
+            <button class="button" onclick="showRegisterForm()">Pokaz panel logowania</button>
+            <button class="button" onclick="closeRegisterForm()">Ukryj panel logowania</button>
             <div id="registerForm" style="display: none">
-                <p style="margin-left: 10%" >Wpisz wymagane dane do logowania</p>
+                <p style="margin-left: 10%">Wpisz wymagane dane do logowania</p>
 
-                <form style="margin-left: 15%" action="logged.html" th:method="post" th:action="@{/log}" th:object="${userLogin}">
+                <form style="margin-left: 15%" action="logged.html" th:method="post" th:action="@{/log}"
+                      th:object="${userLogin}">
                     <input type="email" th:field="*{emailAddress}" placeholder="Adres email"/><br/>
                     <input type="password" th:field="*{password}" placeholder="Hasło"/><br/>
-                    <input style="text-align: center; margin-left: 12.5%" type="submit" value="Zaloguj się"/></form>
+                    <input class="button" style="text-align: center; margin-left: 12.5%" type="submit"
+                           value="Zaloguj się"/></form>
             </div>
         </div>
     </div>
-
 </div>
 
 <script type="text/javascript">
 
-    // function displayNextImage() {
-    //     x = (x === images.length - 1) ? 0 : x + 1;
-    //     document.getElementById("image").src = images[x];
-    // }
-    //
-    // function startTimer() {
-    //     setInterval(displayNextImage, 3000);
-    // }
-    //
-    // var images = [], x = -1;
-    // images[0] = "pic1.jpg";
-    // images[1] = "github.png";
-    // // images[2] = "image3.jpg";
+   var image = document.getElementById("image");
+   var images = [
+       "../images/pic1.jpg",
+       "../images/shopping2.png"
+   ];
 
+   function change() {
+       var strings = images.reverse();
+       image.src = strings[0];
+   }
+
+   setInterval(change, 2000);
+
+    change();
     var link = document.getElementById('link');
 
     link.addEventListener('click', function () {
         this.style.color = 'chocolate';
-        alert('Przekierowanie do strony zewnetrznej');
+        alert('Przekierowanie do strony zewnętrznej');
     });
 
     function showRegisterForm() {
