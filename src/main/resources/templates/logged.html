@@ -49,33 +49,33 @@
         </div>
     </div>
     <hr>
+        <div class="col-md-4">
+            <div class="vl">
 
-    <div class="col-md-4">
-        <div class="vl">
+                <p id="instruction_for_product_input_text">Wprowadz dane o produkcie w ponizszym formularzu</p>
 
-            <p id="instruction_for_product_input_text">Wprowadz dane o produkcie w ponizszym formularzu</p>
+                <form th:method="post" th:action="@{${'/addProduct/'+userLogin.emailAddress}}" th:object="${product}">
 
-            <form th:method="post" th:action="@{${'/addProduct/'+userLogin.emailAddress}}" th:object="${product}">
+                    <input class="input" style="width: 70%; margin-left: 10% ; margin-top: 5% ; height: 50px" type="text"
+                           th:field="*{name}"
+                           placeholder="Nazwa"/><br/>
 
-                <input class="input" style="width: 70%; margin-left: 10% ; margin-top: 5% ; height: 50px" type="text"
-                       th:field="*{name}"
-                       placeholder="Nazwa"/><br/>
+                    <select class="input" style="width: 70%; height: 50px ; margin-left: 10% " th:field="*{category}">
+                        <option th:each="role : ${T(com.app.project.model.Category).values()}"
+                                th:value="${role}"
+                                th:text="${role}"></option>
+                    </select>
+                    <br/>
+                    <input class="input" style="width: 70%; height: 50px ; margin-left: 10%" type="number"
+                           th:field="*{price}"
+                           placeholder="Cena"/><br/>
+                    <input id="add_button" style="text-align: center; width: 70% ; margin-top: 10%; margin-left: 10%"
+                           type="submit" value="Dodaj produkt"/>
+                </form>
 
-                <select class="input" style="width: 70%; height: 50px ; margin-left: 10% " th:field="*{category}">
-                    <option th:each="role : ${T(com.app.project.model.Category).values()}"
-                            th:value="${role}"
-                            th:text="${role}"></option>
-                </select>
-                <br/>
-                <input class="input" style="width: 70%; height: 50px ; margin-left: 10%" type="number"
-                       th:field="*{price}"
-                       placeholder="Cena"/><br/>
-                <input id="add_button" style="text-align: center; width: 70% ; margin-top: 10%; margin-left: 10%"
-                       type="submit" value="Dodaj produkt"/>
-            </form>
-
+            </div>
         </div>
-    </div>
+
     <div class="col-md-4">
         <br><br><br><br><br>
         <div style="max-width: 500px; margin:50px auto">
@@ -96,7 +96,7 @@
                         ]
                     },
                     options: {
-                        legend: {display: true},
+                        legend: {display: false},
                         title: {
                             display: true,
                             text: 'Ile wydałeś na zakupy w poszczególnych kategoriach produktów'
@@ -118,17 +118,17 @@
                         labels: [[${sumPriceByCategory.keySet()}]],
                         datasets: [
                             {
-                                label: "Ile pieniedzy wszyscy użytkownicy wydali na zakupy w podanych kategoriach",
+                                label: "Ile wszyscy razem wydali na zakupy w kategoriach",
                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#8050c4"],
                                 data: [[${sumPriceByCategory.values()}]]
                             }
                         ]
                     },
                     options: {
-                        legend: {display: true},
+                        legend: {display: false},
                         title: {
                             display: true,
-                            text: 'Suma ceny zakupów wszystkich użytkowników zarejestrowanych w serwisie według kategorii produktu'
+                            text: 'Suma ceny zakupów wszystkich według kategorii produktu'
                         }
                     }
                 });
