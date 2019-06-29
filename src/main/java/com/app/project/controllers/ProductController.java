@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -41,13 +42,14 @@ public class ProductController {
   }
 
   @RequestMapping(value = "addProduct/{email}")
-  public String addProduct(Model model, @ModelAttribute(value = "userLogin") CustomerDto customerDto, @PathVariable String email, @ModelAttribute(value = "product") @Valid ProductDto productDto, BindingResult bindingResult) {
+  public String addProduct(HttpSession session, Model model, @PathVariable String email, @ModelAttribute(value = "product") @Valid ProductDto productDto, BindingResult bindingResult) {
 
     if (bindingResult.hasErrors()) {
       throw new NotValidProductException("Invalid product");
     }
 
     Product product = globalControllerUtil.mapProductDtoToProduct(productDto);
+    CustomerDto customerDto = (CustomerDto) session.getAttribute("userLogin");
     Customer customer = globalControllerUtil.mapCustomerDtoToCustomer(customerDto);
     product.setCustomer(customer);
 
@@ -58,17 +60,17 @@ public class ProductController {
   }
 
   @RequestMapping(value = "deleteProduct/{id}")
-  public String deleteProduct(@PathVariable Integer id){
+  public String deleteProduct(@PathVariable Integer id) {
 
     productService.deleteProductById(id);
     return "redirect:/products";
   }
 
   @RequestMapping("/mail")
-  public String sendMail(@ModelAttribute(name = "userLogin") CustomerDto customerDto) {
+  public String sendMail(HttpSession session) {
 
-    List<Product> customerProducts = productService.getCustomerProductsList(customerDto.getEmailAddress());
-    EmailUtil.sendAllSummaryTable(customerDto.getEmailAddress(), "Twoje zakupy", customerProducts);
+    List<Product> customerProducts = productService.getCustomerProductsList(((CustomerDto) session.getAttribute("userLogin")).getEmailAddress());
+    EmailUtil.sendAllSummaryTable(((CustomerDto) session.getAttribute("userLogin")).getEmailAddress(), "Twoje zakupy", customerProducts);
 
     return "redirect:/products";
   }
@@ -78,5 +80,4 @@ public class ProductController {
     sessionStatus.setComplete();
     return "redirect:/logout";
   }
-
 }

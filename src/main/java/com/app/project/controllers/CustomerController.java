@@ -13,8 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -61,4 +63,14 @@ public class CustomerController {
     return globalControllerUtil.doPasswordMatches(customerDto.getPassword(), customerDtoFromDb.getPassword()) ?
             "redirect:/products" : "bad_password";
   }
+
+  @RequestMapping("/delete")
+  public String deleteAccount(HttpSession session, SessionStatus sessionStatus) {
+
+    customerService.deleteCustomerById(((CustomerDto) session.getAttribute("userLogin")).getId());
+    session.removeAttribute("userLogin");
+    sessionStatus.setComplete();
+    return "redirect:/home";
+  }
+
 }

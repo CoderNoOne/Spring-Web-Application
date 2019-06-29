@@ -37,4 +37,9 @@ public class CustomerService {
   public Integer getTotalNumberOfRegisteredCustomers(){
     return customerRepository.findAll().size();
   }
+
+  public void deleteCustomerById(Integer id) {
+
+    customerRepository.deleteById(id);
+  }
 }

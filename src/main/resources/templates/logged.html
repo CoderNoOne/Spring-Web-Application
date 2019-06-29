@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:pages="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Strona użytkownika</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/logged.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/logged3.css}"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
@@ -28,14 +29,16 @@
             padding: 2px;
             border-style: dot-dot-dash;
         }
+
     </style>
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="row">
-        <button class='myButton'>Wyloguj się</button>
-        <button class='myButton'>Wyślij maila z podsumowanie Twoich zakupów</button>
+        <button class='myButton'><i class="fa fa-sign-out"></i>Wyloguj się</button>
+        <button class='myButton'><i class="fa fa-envelope-o"></i>Wyślij maila z podsumowanie Twoich zakupów</button>
+        <button id="deleteUserButton" class="myButton"><i class="fa fa-trash"></i> Usuń konto</button>
         <p class='date_time_text'>Aktualna godzina: <span id="datetime"></span></p>
     </div>
     <div class="row">
@@ -51,7 +54,6 @@
     <hr>
     <div class="col-md-4">
         <div class="vl">
-
             <p id="instruction_for_product_input_text">Wprowadz dane o produkcie w ponizszym formularzu</p>
 
             <form th:method="post" th:action="@{${'/addProduct/'+userLogin.emailAddress}}" th:object="${product}">
@@ -69,8 +71,9 @@
                 <input class="input" style="width: 70%; height: 50px ; margin-left: 10%" type="number"
                        th:field="*{price}"
                        placeholder="Cena"/><br/>
-                <input id="add_button" style="text-align: center; width: 70% ; margin-top: 10%; margin-left: 10%"
-                       type="submit" value="Dodaj produkt"/>
+                <button id="add_button" type='submit'
+                        style="font-size:24px; text-align: center; width: 70% ; margin-top: 10%; margin-left: 10%">Dodaj
+                    produkt <i class="fa fa-shopping-basket"></i></button>
             </form>
 
         </div>
@@ -84,7 +87,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
             <script th:inline="javascript">
                 new Chart(document.getElementById("myChart1"), {
-                    type: 'bar',
+                    type: 'doughnut',
                     data: {
                         labels: [[${sumPriceByCategoryByClient.keySet()}]],
                         datasets: [
@@ -95,8 +98,9 @@
                             }
                         ]
                     },
+                    zoomEnabled: true,
                     options: {
-                        legend: {display: false},
+                        legend: {display: true},
                         title: {
                             display: true,
                             text: 'Ile wydałeś na zakupy w poszczególnych kategoriach produktów'
@@ -104,6 +108,7 @@
                     }
                 });
             </script>
+
         </div>
     </div>
     <div class="col-md-4">
@@ -113,22 +118,36 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
             <script th:inline="javascript">
                 new Chart(document.getElementById("myChart2"), {
-                    type: 'bar',
+                    type: 'horizontalBar',
                     data: {
                         labels: [[${sumPriceByCategory.keySet()}]],
                         datasets: [
                             {
-                                label: "Ile wszyscy razem wydali na zakupy w kategoriach",
+                                label: {
+                                    text: "Ile wszyscy razem wydali na zakupy w kategoriach",
+                                    display: false
+                                },
                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#8050c4"],
                                 data: [[${sumPriceByCategory.values()}]]
+
                             }
                         ]
                     },
+
                     options: {
-                        legend: {display: false},
+                        legend: {
+                            display: false,
+                            position: 'top'
+                        },
                         title: {
                             display: true,
                             text: 'Suma ceny zakupów wszystkich według kategorii produktu'
+                        },
+                        scales: {
+                            xAxes: [{
+                                min: 0,
+                                stacked: true
+                            }]
                         }
                     }
                 });
@@ -155,7 +174,7 @@
             <td th:text="${produkt.name}">Nazwa</td>
             <td th:text="${produkt.category}">kategoria</td>
             <td th:text="${produkt.price}">cena</td>
-            <td><a th:href="@{${'/deleteProduct/'+produkt.id}}">Usun</a></td>
+            <td><a th:href="@{${'/deleteProduct/'+produkt.id}}"><i class="fa fa-minus-circle"></i>Usun</a></td>
         </tbody>
     </table>
 </div>
@@ -175,6 +194,21 @@
         </tbody>
     </table>
 </div>
-<script th:src="@{/js/logged.js}"></script>
+<script th:src="@{/js/logged3.js}"></script>
+<script type="text/javascript">
+    var buttonsArray = document.getElementsByClassName('myButton');
+
+    buttonsArray.item(0).addEventListener('click', function () {
+        window.location.href = '/endSession'
+    });
+
+    buttonsArray.item(1).addEventListener('click', function () {
+        window.location.href = '/mail'
+    });
+
+    buttonsArray.item(2).addEventListener('click', function () {
+        window.location.href = '/delete'
+    });
+</script>
 </body>
 </html>
