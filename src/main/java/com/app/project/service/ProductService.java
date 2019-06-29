@@ -1,9 +1,9 @@
 package com.app.project.service;
 
 import com.app.project.dto.CustomerDto;
-import com.app.project.model.Category;
-import com.app.project.model.Customer;
-import com.app.project.model.Product;
+import com.app.project.model.enums.Category;
+import com.app.project.model.entity.Customer;
+import com.app.project.model.entity.Product;
 import com.app.project.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,4 +76,7 @@ public class ProductService {
 
   }
 
+  public void deleteProductById(Integer id) {
+    productRepository.deleteById(id);
+  }
 }

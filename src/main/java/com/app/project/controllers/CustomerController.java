@@ -3,7 +3,7 @@ package com.app.project.controllers;
 import com.app.project.dto.CustomerDto;
 import com.app.project.exceptions.CustomerAlreadyExists;
 import com.app.project.exceptions.NotValidInputException;
-import com.app.project.model.Customer;
+import com.app.project.model.entity.Customer;
 import com.app.project.service.CustomerService;
 import com.app.project.utils.GlobalControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;

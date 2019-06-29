@@ -2,7 +2,7 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:pages="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Strona uzytkownika</title>
+    <title>Strona użytkownika</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/logged.css}"/>
@@ -49,32 +49,32 @@
         </div>
     </div>
     <hr>
-        <div class="col-md-4">
-            <div class="vl">
+    <div class="col-md-4">
+        <div class="vl">
 
-                <p id="instruction_for_product_input_text">Wprowadz dane o produkcie w ponizszym formularzu</p>
+            <p id="instruction_for_product_input_text">Wprowadz dane o produkcie w ponizszym formularzu</p>
 
-                <form th:method="post" th:action="@{${'/addProduct/'+userLogin.emailAddress}}" th:object="${product}">
+            <form th:method="post" th:action="@{${'/addProduct/'+userLogin.emailAddress}}" th:object="${product}">
 
-                    <input class="input" style="width: 70%; margin-left: 10% ; margin-top: 5% ; height: 50px" type="text"
-                           th:field="*{name}"
-                           placeholder="Nazwa"/><br/>
+                <input class="input" style="width: 70%; margin-left: 10% ; margin-top: 5% ; height: 50px" type="text"
+                       th:field="*{name}"
+                       placeholder="Nazwa"/><br/>
 
-                    <select class="input" style="width: 70%; height: 50px ; margin-left: 10% " th:field="*{category}">
-                        <option th:each="role : ${T(com.app.project.model.Category).values()}"
-                                th:value="${role}"
-                                th:text="${role}"></option>
-                    </select>
-                    <br/>
-                    <input class="input" style="width: 70%; height: 50px ; margin-left: 10%" type="number"
-                           th:field="*{price}"
-                           placeholder="Cena"/><br/>
-                    <input id="add_button" style="text-align: center; width: 70% ; margin-top: 10%; margin-left: 10%"
-                           type="submit" value="Dodaj produkt"/>
-                </form>
+                <select class="input" style="width: 70%; height: 50px ; margin-left: 10% " th:field="*{category}">
+                    <option th:each="role : ${T(com.app.project.model.enums.Category).values()}"
+                            th:value="${role}"
+                            th:text="${role}"></option>
+                </select>
+                <br/>
+                <input class="input" style="width: 70%; height: 50px ; margin-left: 10%" type="number"
+                       th:field="*{price}"
+                       placeholder="Cena"/><br/>
+                <input id="add_button" style="text-align: center; width: 70% ; margin-top: 10%; margin-left: 10%"
+                       type="submit" value="Dodaj produkt"/>
+            </form>
 
-            </div>
         </div>
+    </div>
 
     <div class="col-md-4">
         <br><br><br><br><br>
@@ -148,14 +148,14 @@
             <th>Produkt</th>
             <th>Kategoria</th>
             <th>Cena</th>
-
         </tr>
         </thead>
-        <tbody th:remove="all-but-first">
+        <tbody>
         <tr th:each="produkt : ${productList}">
             <td th:text="${produkt.name}">Nazwa</td>
             <td th:text="${produkt.category}">kategoria</td>
             <td th:text="${produkt.price}">cena</td>
+            <td><a th:href="@{${'/deleteProduct/'+produkt.id}}">Usun</a></td>
         </tbody>
     </table>
 </div>

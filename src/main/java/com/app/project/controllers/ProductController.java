@@ -3,8 +3,8 @@ package com.app.project.controllers;
 import com.app.project.dto.CustomerDto;
 import com.app.project.dto.ProductDto;
 import com.app.project.exceptions.NotValidProductException;
-import com.app.project.model.Customer;
-import com.app.project.model.Product;
+import com.app.project.model.entity.Customer;
+import com.app.project.model.entity.Product;
 import com.app.project.service.ProductService;
 import com.app.project.utils.EmailUtil;
 import com.app.project.utils.GlobalControllerUtil;
@@ -54,6 +54,13 @@ public class ProductController {
     globalControllerUtil.setModelAttributes(model, customerDto, email);
 
     productService.addProduct(product);
+    return "redirect:/products";
+  }
+
+  @RequestMapping(value = "deleteProduct/{id}")
+  public String deleteProduct(@PathVariable Integer id){
+
+    productService.deleteProductById(id);
     return "redirect:/products";
   }
 

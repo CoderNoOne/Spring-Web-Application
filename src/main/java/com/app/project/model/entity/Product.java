@@ -1,5 +1,6 @@
-package com.app.project.model;
+package com.app.project.model.entity;
 
+import com.app.project.model.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

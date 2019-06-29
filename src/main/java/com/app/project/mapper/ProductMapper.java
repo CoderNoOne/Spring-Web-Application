@@ -1,7 +1,7 @@
 package com.app.project.mapper;
 
 import com.app.project.dto.ProductDto;
-import com.app.project.model.Product;
+import com.app.project.model.entity.Product;
 import org.mapstruct.Mapper;
 
 @Mapper

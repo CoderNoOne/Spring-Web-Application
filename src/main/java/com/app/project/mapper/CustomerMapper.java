@@ -1,7 +1,7 @@
 package com.app.project.mapper;
 
 import com.app.project.dto.CustomerDto;
-import com.app.project.model.Customer;
+import com.app.project.model.entity.Customer;
 import org.mapstruct.Mapper;
 
 @Mapper

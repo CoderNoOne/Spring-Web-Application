@@ -1,7 +1,7 @@
 package com.app.project.utils;
 
 import com.app.project.exceptions.MailException;
-import com.app.project.model.Product;
+import com.app.project.model.entity.Product;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

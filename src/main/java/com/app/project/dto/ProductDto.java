@@ -1,6 +1,6 @@
 package com.app.project.dto;
 
-import com.app.project.model.Category;
+import com.app.project.model.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
