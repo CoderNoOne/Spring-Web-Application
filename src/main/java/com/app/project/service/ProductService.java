@@ -1,15 +1,21 @@
 package com.app.project.service;
 
 import com.app.project.dto.CustomerDto;
+import com.app.project.dto.ProductDto;
 import com.app.project.helper.Box;
 import com.app.project.helper.BoxList;
+import com.app.project.mapper.ProductMapper;
 import com.app.project.model.enums.Category;
 import com.app.project.model.entity.Customer;
 import com.app.project.model.entity.Product;
 import com.app.project.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,13 +28,15 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
   private ProductRepository productRepository;
+  private ProductMapper productMapper;
 
   @PersistenceContext
   private EntityManager entityManager;
 
   @Autowired
-  public ProductService(ProductRepository productRepository) {
+  public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
     this.productRepository = productRepository;
+    this.productMapper = productMapper;
   }
 
   @Transactional
@@ -39,6 +47,10 @@ public class ProductService {
   }
 
   public List<Product> getCustomerProductsList(String email) {
+    return productRepository.findAllProductsByCustomerEmail(email);
+  }
+
+  public List<Product> getCustomerProducts(String email) {
     return productRepository.findAllProductsByCustomerEmail(email);
   }
 

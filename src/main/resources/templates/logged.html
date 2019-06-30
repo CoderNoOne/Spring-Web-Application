@@ -190,7 +190,8 @@
             <td><a th:href="@{${'/deleteProduct/'+produkt.id}}"><i class="fa fa-minus-circle"></i>Usuń</a></td>
         </tbody>
     </table>
-    <div id = 'footer'></div>
+    <div id = 'footer'>
+    </div>
 </div>
 <div style="margin-bottom:40px"  th:if="${!sumPriceByCategoryByClient.boxes.isEmpty()}" class="col-md-6">
     <p class="table_header" style="text-align: center">SUMA ZA ZAKUPY WEDŁUG KATEGORII</p>
@@ -209,6 +210,9 @@
             <td th:text="${box.percentage}">Procent</td>
         </tbody>
     </table>
+    <br>
+    <br>
+    <br>
 </div>
 
 

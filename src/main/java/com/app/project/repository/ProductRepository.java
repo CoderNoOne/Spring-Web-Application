@@ -1,10 +1,12 @@
 package com.app.project.repository;
 
 import com.app.project.model.entity.Product;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Page;
 
 
 import java.util.List;
@@ -13,8 +15,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-  @Query(value = "select p.customer.id from Product p where p.customer.id = :customerId")
-  Integer getCustomerByCustomerId(@Param("customerId") Integer id);
 
   @Query(value = "select p from Product as p where p.customer.emailAddress = :customerEmail")
   List<Product> findAllProductsByCustomerEmail(@Param("customerEmail") String email);
