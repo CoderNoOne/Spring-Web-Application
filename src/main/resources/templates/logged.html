@@ -30,6 +30,16 @@
             border-style: dot-dot-dash;
         }
 
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: red;
+            color: white;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -198,6 +208,10 @@
             <td th:text="${box.percentage}">Procent</td>
         </tbody>
     </table>
+</div>
+
+<div class="footer">
+
 </div>
 <script th:src="@{/js/logged3.js}"></script>
 <script type="text/javascript">
