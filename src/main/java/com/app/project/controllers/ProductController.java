@@ -36,13 +36,13 @@ public class ProductController {
   public String login(Model model, @ModelAttribute(name = "userLogin") CustomerDto customerDto) {
 
     model.addAttribute("product", new ProductDto());
-    globalControllerUtil.setModelAttributes(model, customerDto, customerDto.getEmailAddress());
+    globalControllerUtil.setModelAttributes(model, customerDto);
 
     return "logged";
   }
 
-  @PostMapping(value = "addProduct/{email}")
-  public String addProduct(HttpSession session, Model model, @PathVariable String email, @ModelAttribute(value = "product") @Valid ProductDto productDto, BindingResult bindingResult) {
+  @PostMapping(value = "addProduct")
+  public String addProduct(HttpSession session, Model model, @ModelAttribute(value = "product") @Valid ProductDto productDto, BindingResult bindingResult) {
 
     if (bindingResult.hasErrors()) {
       throw new NotValidProductException("Invalid product");
@@ -53,7 +53,7 @@ public class ProductController {
     Customer customer = globalControllerUtil.mapCustomerDtoToCustomer(customerDto);
     product.setCustomer(customer);
 
-    globalControllerUtil.setModelAttributes(model, customerDto, email);
+    globalControllerUtil.setModelAttributes(model, customerDto);
 
     productService.addProduct(product);
     return "redirect:/products";

@@ -31,10 +31,10 @@ public final class GlobalControllerUtil {
     this.passwordEncoder = passwordEncoder;
   }
 
-  public void setModelAttributes(Model model, CustomerDto customerDto, String email) {
+  public void setModelAttributes(Model model, CustomerDto customerDto) {
 
     model.addAttribute("userLogin", customerDto);
-    model.addAttribute("productList", productService.getCustomerProductsList(email));
+    model.addAttribute("productList", productService.getCustomerProductsList(customerDto.getEmailAddress()));
     model.addAttribute("sumPriceByCategory", productService.allProductsSumPriceByCategory());
     model.addAttribute("sumPriceByCategoryByClientMap", productService.productsSumPriceByCategoryByCustomerEmailMap(customerDto.getEmailAddress()));
     model.addAttribute("sumPriceByCategoryByClient", productService.productsSumPriceByCategoryByCustomerEmail(customerDto.getEmailAddress()));

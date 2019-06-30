@@ -66,7 +66,7 @@
         <div class="vl">
             <p id="instruction_for_product_input_text">Wprowadz dane o produkcie w ponizszym formularzu</p>
 
-            <form th:method="post" th:action="@{${'/addProduct/'+userLogin.emailAddress}}" th:object="${product}">
+            <form th:method="post" th:action="@{'/addProduct'}" th:object="${product}">
 
                 <input class="input" style="width: 70%; margin-left: 10% ; margin-top: 5% ; height: 50px" type="text"
                        th:field="*{name}"
