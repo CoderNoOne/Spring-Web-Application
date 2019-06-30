@@ -103,7 +103,7 @@
                         legend: {display: true},
                         title: {
                             display: true,
-                            text: 'Ile wydałeś na zakupy w poszczególnych kategoriach produktów'
+                            text: 'Ile Ty wydałeś na zakupy w poszczególnych kategoriach'
                         }
                     }
                 });
@@ -141,7 +141,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Suma ceny zakupów wszystkich według kategorii produktu'
+                            text: 'Suma ceny zakupów wszystkich użytkowników'
                         },
                         scales: {
                             xAxes: [{
@@ -164,17 +164,19 @@
     <table class="center" th:margin="1500px " th:border="1">
         <thead>
         <tr>
+            <th>Lp.</th>
             <th>Produkt</th>
             <th>Kategoria</th>
             <th>Cena</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="produkt : ${productList}">
+        <tr th:each="produkt, iStat : ${productList}">
+            <td th:text = "${iStat.count}"></td>
             <td th:text="${produkt.name}">Nazwa</td>
             <td th:text="${produkt.category}">kategoria</td>
             <td th:text="${produkt.price}">cena</td>
-            <td><a th:href="@{${'/deleteProduct/'+produkt.id}}"><i class="fa fa-minus-circle"></i>Usun</a></td>
+            <td><a th:href="@{${'/deleteProduct/'+produkt.id}}"><i class="fa fa-minus-circle"></i>Usuń</a></td>
         </tbody>
     </table>
 </div>
