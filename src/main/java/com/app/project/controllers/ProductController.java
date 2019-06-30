@@ -9,14 +9,12 @@ import com.app.project.service.ProductService;
 import com.app.project.utils.EmailUtil;
 import com.app.project.utils.GlobalControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -34,7 +32,7 @@ public class ProductController {
     this.globalControllerUtil = globalControllerUtil;
   }
 
-  @RequestMapping("/products")
+  @GetMapping("/products")
   public String login(Model model, @ModelAttribute(name = "userLogin") CustomerDto customerDto) {
 
     model.addAttribute("product", new ProductDto());
@@ -43,7 +41,7 @@ public class ProductController {
     return "logged";
   }
 
-  @RequestMapping(value = "addProduct/{email}")
+  @PostMapping(value = "addProduct/{email}")
   public String addProduct(HttpSession session, Model model, @PathVariable String email, @ModelAttribute(value = "product") @Valid ProductDto productDto, BindingResult bindingResult) {
 
     if (bindingResult.hasErrors()) {
@@ -61,14 +59,14 @@ public class ProductController {
     return "redirect:/products";
   }
 
-  @RequestMapping(value = "deleteProduct/{id}")
+  @GetMapping(value = "deleteProduct/{id}")
   public String deleteProduct(@PathVariable Integer id) {
 
     productService.deleteProductById(id);
     return "redirect:/products";
   }
 
-  @RequestMapping("/mail")
+  @GetMapping("/mail")
   public String sendMail(HttpSession session) {
 
     List<Product> customerProducts = productService.getCustomerProductsList(((CustomerDto) session.getAttribute("userLogin")).getEmailAddress());
@@ -77,7 +75,7 @@ public class ProductController {
     return "redirect:/products";
   }
 
-  @RequestMapping("/endSession")
+  @GetMapping("/endSession")
   public String endSession(SessionStatus sessionStatus) {
     sessionStatus.setComplete();
     return "redirect:/logout";

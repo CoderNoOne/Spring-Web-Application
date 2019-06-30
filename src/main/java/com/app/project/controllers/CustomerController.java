@@ -2,7 +2,6 @@ package com.app.project.controllers;
 
 import com.app.project.dto.CustomerDto;
 import com.app.project.exceptions.CustomerAlreadyExists;
-import com.app.project.exceptions.NotValidInputException;
 import com.app.project.model.entity.Customer;
 import com.app.project.service.CustomerService;
 import com.app.project.utils.GlobalControllerUtil;
@@ -10,17 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class CustomerController {
@@ -35,7 +29,7 @@ public class CustomerController {
   }
 
   @PostMapping("/save")
-  public String save(Model model, @ModelAttribute(value = "userRegister") @Valid CustomerDto customerDto, BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+  public String save(Model model, @ModelAttribute(value = "userRegister") @Valid CustomerDto customerDto, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       model.addAttribute("saveUserErrors", bindingResult.getAllErrors());
       return "registrationError";
@@ -54,7 +48,7 @@ public class CustomerController {
     return "saved";
   }
 
-  @RequestMapping("/log")
+  @PostMapping("/log")
   public String login(@ModelAttribute(name = "userLogin") CustomerDto customerDto, RedirectAttributes redirectAttributes) {
 
 
@@ -68,7 +62,7 @@ public class CustomerController {
             "redirect:/products" : "bad_password";
   }
 
-  @RequestMapping("/delete")
+  @GetMapping("/delete")
   public String deleteAccount(HttpSession session, SessionStatus sessionStatus) {
 
     customerService.deleteCustomerById(((CustomerDto) session.getAttribute("userLogin")).getId());
