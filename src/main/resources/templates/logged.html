@@ -89,12 +89,12 @@
                 new Chart(document.getElementById("myChart1"), {
                     type: 'doughnut',
                     data: {
-                        labels: [[${sumPriceByCategoryByClient.keySet()}]],
+                        labels: [[${sumPriceByCategoryByClientMap.keySet()}]],
                         datasets: [
                             {
                                 label: "Ile pieniedzy wydałeś na produkty w danej kategorii",
                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#8050c4"],
-                                data: [[${sumPriceByCategoryByClient.values()}]]
+                                data: [[${sumPriceByCategoryByClientMap.values()}]]
                             }
                         ]
                     },
@@ -111,6 +111,7 @@
 
         </div>
     </div>
+
     <div class="col-md-4">
 
         <div style="max-width: 500px; margin:150px auto">
@@ -180,19 +181,21 @@
         </tbody>
     </table>
 </div>
-<div th:if="${!sumPriceByCategoryByClient.isEmpty()}" class="col-md-6">
+<div th:if="${!sumPriceByCategoryByClient.boxes.isEmpty()}" class="col-md-6">
     <p class="table_header" style="text-align: center">SUMA ZA ZAKUPY WEDŁUG KATEGORII</p>
     <table class="center" th:margin="500px " th:border="1">
         <thead>
         <tr>
             <th>Kategoria</th>
             <th>Suma</th>
+            <th>Procent</th>
         </tr>
         </thead>
-        <tbody th:remove="all-but-first">
-        <tr th:each="entry : ${sumPriceByCategoryByClient}">
-            <td th:text="${entry.getKey()}">Kategoria</td>
-            <td th:text="${entry.getValue()}">Suma</td>
+        <tbody>
+        <tr th:each="box : ${sumPriceByCategoryByClient.boxes}">
+            <td th:text="${box.category}">Kategoria</td>
+            <td th:text="${box.sum}">Suma</td>
+            <td th:text="${box.percentage}">Procent</td>
         </tbody>
     </table>
 </div>

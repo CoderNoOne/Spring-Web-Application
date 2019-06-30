@@ -36,6 +36,7 @@ public final class GlobalControllerUtil {
     model.addAttribute("userLogin", customerDto);
     model.addAttribute("productList", productService.getCustomerProductsList(email));
     model.addAttribute("sumPriceByCategory", productService.allProductsSumPriceByCategory());
+    model.addAttribute("sumPriceByCategoryByClientMap", productService.productsSumPriceByCategoryByCustomerEmailMap(customerDto.getEmailAddress()));
     model.addAttribute("sumPriceByCategoryByClient", productService.productsSumPriceByCategoryByCustomerEmail(customerDto.getEmailAddress()));
     model.addAttribute("sumPriceByAllCategoryByAllClients", productService.sumPriceByAllCategoryByAllClients());
   }

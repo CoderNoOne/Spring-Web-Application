@@ -1,6 +1,8 @@
 package com.app.project.service;
 
 import com.app.project.dto.CustomerDto;
+import com.app.project.helper.Box;
+import com.app.project.helper.BoxList;
 import com.app.project.model.enums.Category;
 import com.app.project.model.entity.Customer;
 import com.app.project.model.entity.Product;
@@ -49,12 +51,25 @@ public class ProductService {
   }
 
 
-  public Map<Category, BigDecimal> productsSumPriceByCategoryByCustomerEmail(String email) {
+  public Map<Category, BigDecimal> productsSumPriceByCategoryByCustomerEmailMap(String email){
 
     return productRepository.findProductsByCategoryByClientEmail(email).stream()
             .collect(Collectors.groupingBy(arr -> Category.valueOf(String.valueOf(arr[0])),
                     Collectors.mapping(arr -> new BigDecimal(String.valueOf(arr[1])), Collectors.reducing(BigDecimal.ZERO,
                             BigDecimal::add))));
+
+  }
+  public BoxList productsSumPriceByCategoryByCustomerEmail(String email) {
+
+    BoxList boxList = new BoxList();
+    productRepository.findProductsByCategoryByClientEmail(email).stream()
+            .collect(Collectors.groupingBy(arr -> Category.valueOf(String.valueOf(arr[0])),
+                    Collectors.mapping(arr -> new BigDecimal(String.valueOf(arr[1])), Collectors.reducing(BigDecimal.ZERO,
+                            BigDecimal::add)))).entrySet().stream()
+            .map(e -> Box.builder().category(e.getKey()).sum(e.getValue()).build()).forEach(boxList::add);
+
+    System.out.println("BoxList" + boxList);
+    return boxList;
   }
 
   public Map<Category, Map<CustomerDto, BigDecimal>> sumPriceByAllCategoryByAllClients() {
