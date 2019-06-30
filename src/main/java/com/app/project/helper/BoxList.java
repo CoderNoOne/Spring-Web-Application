@@ -22,7 +22,7 @@ public class BoxList {
   public void add(Box box) {
     boxes.add(box);
     BigDecimal sum = sum();
-    boxes.forEach(element -> element.setPercentage(element.getSum().divide(sum, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal("100"), new MathContext(4, RoundingMode.HALF_UP))));
+    boxes.forEach(element -> element.setPercentage(element.getSum().divide(sum, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal("100"), new MathContext(4, RoundingMode.UNNECESSARY))));
   }
 
   private BigDecimal sum() {

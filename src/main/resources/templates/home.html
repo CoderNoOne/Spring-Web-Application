@@ -12,6 +12,14 @@
             width: 100%;
         }
 
+        #footer {
+            width: 100%;
+            height: 50px;
+            bottom: 0;
+            margin-top: 10px;
+            position: relative;
+        }
+
     </style>
     <link rel="stylesheet" type="text/css" th:href="@{/css/home_style.css}"/>
 </head>
@@ -90,9 +98,10 @@
                            placeholder="Adres email tylko gmail 5-30 znakow"/><br/>
                     <input type="password" th:field="*{password}" placeholder="Hasło min 5 znaków"/><br/>
                     <input class="button" style="text-align: center ; margin-left: 7.5% ; margin-top: 5%" type="submit"
-                           value="Zarejestruj się"/></form>
-            </div>
-            <br>
+                           value="Zarejestruj się"/><br><br><br>
+                </form>
+                <div id = 'footer'></div>
+            </div><br><br><br><br>
 
         </div>
         <div style="float: right; width: 35%; margin-right: 10%"><p class="form_header" style="margin-left: 25%">PANEL
@@ -110,7 +119,7 @@
                     <input type="email" th:field="*{emailAddress}" placeholder="Adres email"/><br/>
                     <input type="password" th:field="*{password}" placeholder="Hasło"/><br/>
                     <input class="button" style="text-align: center; margin-left: 10% ; margin-top: 6%" type="submit"
-                           value="Zaloguj się"/></form>
+                           value="Zaloguj się"/><br><br><br></form>
             </div>
         </div>
     </div>

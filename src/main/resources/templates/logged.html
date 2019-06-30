@@ -30,19 +30,19 @@
             border-style: dot-dot-dash;
         }
 
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
+
+        #footer {
             width: 100%;
-            background-color: red;
-            color: white;
-            text-align: center;
+            height: 50px;
+            bottom: 0;
+            margin-top: 10px;
+            position: relative;
         }
 
     </style>
 </head>
 <body>
+
 
 <div class="container-fluid">
     <div class="row">
@@ -190,8 +190,9 @@
             <td><a th:href="@{${'/deleteProduct/'+produkt.id}}"><i class="fa fa-minus-circle"></i>Usuń</a></td>
         </tbody>
     </table>
+    <div id = 'footer'></div>
 </div>
-<div th:if="${!sumPriceByCategoryByClient.boxes.isEmpty()}" class="col-md-6">
+<div style="margin-bottom:40px"  th:if="${!sumPriceByCategoryByClient.boxes.isEmpty()}" class="col-md-6">
     <p class="table_header" style="text-align: center">SUMA ZA ZAKUPY WEDŁUG KATEGORII</p>
     <table class="center" th:margin="500px " th:border="1">
         <thead>
@@ -210,9 +211,9 @@
     </table>
 </div>
 
-<div class="footer">
 
-</div>
+
+
 <script th:src="@{/js/logged3.js}"></script>
 <script type="text/javascript">
     var buttonsArray = document.getElementsByClassName('myButton');
