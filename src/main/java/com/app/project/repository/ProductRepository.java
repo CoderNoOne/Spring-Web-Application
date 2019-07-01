@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.domain.Page;
-
 
 import java.util.List;
 
@@ -21,7 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
   @Query(value = "select p.category, sum(p.price) from Product as p group by p.category")
   List<Object[]> findProductsByCategory();
-
 
   @Query(value = "select product.category, product.price, product.customer_id, customer.first_name, customer.last_name, customer.email_address from product join customer on product.customer_id = customer.id", nativeQuery = true)
   List<Object[]> joinTablesResult();

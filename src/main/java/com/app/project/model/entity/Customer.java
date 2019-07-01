@@ -1,18 +1,15 @@
 package com.app.project.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer implements Serializable {
+public class Customer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +20,8 @@ public class Customer implements Serializable {
   private String password;
 
   @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private List<Product> products;
 
 }

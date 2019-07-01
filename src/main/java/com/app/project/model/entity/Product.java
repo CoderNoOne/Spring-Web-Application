@@ -4,7 +4,6 @@ import com.app.project.model.enums.Category;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 @AllArgsConstructor
@@ -12,7 +11,7 @@ import java.math.BigDecimal;
 @Builder
 @Data
 @Entity
-public class Product implements Serializable {
+public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
@@ -26,7 +25,5 @@ public class Product implements Serializable {
 
   @ManyToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "customer_id")
-  @ToString.Exclude
-  @EqualsAndHashCode.Exclude
   private Customer customer;
 }
