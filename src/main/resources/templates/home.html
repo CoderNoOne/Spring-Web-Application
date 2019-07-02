@@ -104,9 +104,7 @@
                 <p id="form_login_instruction_text" class='form_instruction' style="margin-left: 20%">Wpisz wymagane
                     dane do logowania</p>
 
-                <form style="margin-left: 25%; margin-top: 10%" action="logged.html" th:method="post"
-                      th:action="@{/log}"
-                      th:object="${userLogin}">
+                <form style="margin-left: 25%; margin-top: 10%" action="logged.html" th:method="post" th:action="@{/log}" th:object="${userLogin}">
                     <input type="email" th:field="*{emailAddress}" placeholder="Adres email"/><br/>
                     <input type="password" th:field="*{password}" placeholder="Hasło"/><br/>
                     <input class="button" style="text-align: center; margin-left: 10% ; margin-top: 6%" type="submit"
