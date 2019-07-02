@@ -32,3 +32,4 @@ buttonsArray.item(1).addEventListener('click', function () {
 buttonsArray.item(2).addEventListener('click', function () {
     window.location.href = '/delete'
 });
+

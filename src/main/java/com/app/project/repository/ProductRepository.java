@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-
   @Query(value = "select p from Product as p where p.customer.emailAddress = :customerEmail")
   List<Product> findAllProductsByCustomerEmail(@Param("customerEmail") String email);
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Error</title>
+    <style>
+        html,body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://backgroundcheckall.com/wp-content/uploads/2017/12/vintage-scrapbook-background-11.jpg');
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body>
+<h1 style="color: red; text-align: center">Zamówienie zawiera niepoprawnie wprowadzone dane</h1>
+
+<div class="col-md-6" id="tab1">
+    <p class="table_header" style="text-align: center ;  color: darkorange;;
+    font-size: 125% ; margin-right: 10%" >LISTA BŁĘDÓW</p>
+
+    <table style="; margin-right: 35%" class="center" th:border="1">
+        <thead>
+        <tr>
+            <th>Lp.</th>
+            <th>Wiadomość</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="error, iStat : ${addProductError}">
+            <td th:text="${iStat.count}"></td>
+            <td th:text="${error.getDefaultMessage()}">Wiadomosc</td>
+        </tbody>
+    </table>
+    <div id='footer'></div>
+</div>
+
+
+<div class="row">
+    <a th:href="@{/products}" style="color: darkred; text-align: center">Powrót do strony użytkownika</a>
+</div>
+</body>
+</html>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @SessionAttributes("userLogin")
@@ -45,7 +46,7 @@ public class ProductController {
   public String addProduct(HttpSession session, Model model, @ModelAttribute(value = "product") @Valid ProductDto productDto, BindingResult bindingResult) {
 
     if (bindingResult.hasErrors()) {
-      throw new NotValidProductException("Invalid product");
+      throw new NotValidProductException("Invalid product", Map.of("addProductError", bindingResult.getAllErrors()));
     }
 
     Product product = globalControllerUtil.mapProductDtoToProduct(productDto);
@@ -69,7 +70,7 @@ public class ProductController {
   @GetMapping("/mail")
   public String sendMail(HttpSession session) {
 
-    List<Product> customerProducts = productService.getCustomerProductsList(((CustomerDto) session.getAttribute("userLogin")).getEmailAddress());
+    List<ProductDto> customerProducts = productService.getCustomerProductsList(((CustomerDto) session.getAttribute("userLogin")).getEmailAddress());
     EmailUtil.sendAllSummaryTable(((CustomerDto) session.getAttribute("userLogin")).getEmailAddress(), "Twoje zakupy", customerProducts);
 
     return "redirect:/products";

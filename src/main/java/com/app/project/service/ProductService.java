@@ -46,12 +46,11 @@ public class ProductService {
     entityManager.persist(product);
   }
 
-  public List<Product> getCustomerProductsList(String email) {
-    return productRepository.findAllProductsByCustomerEmail(email);
-  }
-
-  public List<Product> getCustomerProducts(String email) {
-    return productRepository.findAllProductsByCustomerEmail(email);
+  public List<ProductDto> getCustomerProductsList(String email) {
+    return productRepository.findAllProductsByCustomerEmail(email)
+            .stream()
+            .map(productMapper::mapProductToProductDto)
+            .collect(Collectors.toList());
   }
 
   public Map<Category, BigDecimal> allProductsSumPriceByCategory() {
@@ -63,7 +62,7 @@ public class ProductService {
   }
 
 
-  public Map<Category, BigDecimal> productsSumPriceByCategoryByCustomerEmailMap(String email){
+  public Map<Category, BigDecimal> productsSumPriceByCategoryByCustomerEmailMap(String email) {
 
     return productRepository.findProductsByCategoryByClientEmail(email).stream()
             .collect(Collectors.groupingBy(arr -> Category.valueOf(String.valueOf(arr[0])),
@@ -71,6 +70,7 @@ public class ProductService {
                             BigDecimal::add))));
 
   }
+
   public BoxList productsSumPriceByCategoryByCustomerEmail(String email) {
 
     BoxList boxList = new BoxList();
@@ -80,7 +80,6 @@ public class ProductService {
                             BigDecimal::add)))).entrySet().stream()
             .map(e -> Box.builder().category(e.getKey()).sum(e.getValue()).build()).forEach(boxList::add);
 
-    System.out.println("BoxList" + boxList);
     return boxList;
   }
 

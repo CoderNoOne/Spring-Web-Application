@@ -1,17 +1,31 @@
 
+html {
+    width: 100%;
+}
 #header {
     width: 100%;
-    height: 80px;
-
+    position: fixed;
+    top: 0;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #824844));
     background: -moz-linear-gradient(top, #c62d1f 5%, #824844 100%);
     background: -webkit-linear-gradient(top, #c62d1f 5%, #824844 100%);
     background: -o-linear-gradient(top, #c62d1f 5%, #824844 100%);
     background: -ms-linear-gradient(top, #c62d1f 5%, #824844 100%);
     background: linear-gradient(to bottom, #c62d1f 5%, #824844 100%);
+    margin-bottom: 1em;
+}
+.sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
 }
 
-
+#link {
+    margin-top: 50%;
+}
+#image{
+    margin-top: 5%;
+}
 .form_instruction {
     font-family: "Comic Sans MS";
     color: burlywood;
@@ -20,6 +34,9 @@
 h2, h3 {
     font-family: "Comic Sans MS";
     color: #8a2a21;
+}
+h3{
+    margin-top: 2%;
 }
 
 .form_header {
@@ -36,12 +53,13 @@ h2, h3 {
 }
 
 p {
-    font-family: "Times New Roman"
+    font-family: "Times New Roman";
+    color: #000;
 }
 
 .article_header {
     font-family: "Comic Sans MS";
-    color: #0c152e;
+    color: goldenrod;
 }
 
 #logo {
@@ -51,7 +69,8 @@ p {
 
 #container {
     width: 100%;
-    margin: auto;
+    height: 100%;
+    margin-top: 5%;
 }
 
 #content {
@@ -64,6 +83,7 @@ p {
 }
 
 .featured {
+    margin-top: 0;
     float: left;
 }
 
@@ -96,8 +116,6 @@ ul li:nth-child(odd) {
     background: -o-linear-gradient(top, #c62d1f 5%, #824844 100%);
     background: -ms-linear-gradient(top, #c62d1f 5%, #824844 100%);
     background: linear-gradient(to bottom, #c62d1f 5%, #824844 100%);
-
-    /*background-color: #dfdfdf;*/
 }
 
 ul li:nth-child(even) {
@@ -109,7 +127,6 @@ ul li:nth-child(even) {
     background: -ms-linear-gradient(top, #824844 5%, #c62d1f 100%);
     background: linear-gradient(to bottom, #824844 5%, #c62d1f 100%);
 
-    /*background-color: #eaeaea;*/
 }
 
 .button {

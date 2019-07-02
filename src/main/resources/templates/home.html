@@ -6,18 +6,15 @@
     <title>Strona główna</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .sticky {
-            position: sticky;
-            top: 0;
-            width: 100%;
-        }
+
     </style>
     <link rel="stylesheet" type="text/css" th:href="@{/css/home_style.css}"/>
+
 </head>
 
 <body>
 <div id="header">
-    <h1 id='h1_header'><span>APLIKACJA DO ZARZĄDZANIA LISTĄ ZAKUPÓW</span></h1>
+    <h1 id='h1_header'>APLIKACJA DO ZARZĄDZANIA LISTĄ ZAKUPÓW </h1>
 </div>
 
 <div id="container">
@@ -29,7 +26,7 @@
                 zarządzania listą zakupów. Prezentowane są również szczegółowe statystyki dla zalogowanego użytkownika
                 oraz statystyki ogólne
                 dla zarejstrowanych</p>
-            <hr>
+            <hr style="margin-bottom: 3em">
 
             <a href="https://github.com/CoderNoOne" id="link"
                style="text-align: center; margin-left:20% ; font-size: 200%">Link do kodu
@@ -70,7 +67,7 @@
             </ul>
         </div>
         <h2 th:align="center">ŻYCZYMY WSZYSTKIM UDANYCH ZAKUPÓW!</h2>
-    </div>
+<!--    </div>-->
     <hr>
     <div>
         <div style="float: left; width: 35% ;margin-left: 15%"><p class='form_header' style="margin-left: 30%">PANEL
@@ -112,18 +109,9 @@
             </div>
         </div>
     </div>
+    </div>
 </div>
-
+</body>
 <script th:src="@{/js/home.js}"></script>
 
-<script>
-    var lastName = document.getElementById('lastName');
-    lastName.addEventListener('focus', function () {
-        var h = document.createElement("p");
-        var t = document.createTextNode("Hello World");
-        h.appendChild(t);
-        this.innerText = "sdsasd"
-    })
-</script>
-</body>
 </html>

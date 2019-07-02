@@ -2,6 +2,8 @@ package com.app.project.controllers;
 
 import com.app.project.dto.CustomerDto;
 import com.app.project.exceptions.CustomerAlreadyExists;
+import com.app.project.exceptions.NotValidInputException;
+import com.app.project.exceptions.UserNotFoundException;
 import com.app.project.model.entity.Customer;
 import com.app.project.service.CustomerService;
 import com.app.project.utils.GlobalControllerUtil;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 public class CustomerController {
@@ -31,8 +34,7 @@ public class CustomerController {
   @PostMapping("/save")
   public String save(Model model, @ModelAttribute(value = "userRegister") @Valid CustomerDto customerDto, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
-      model.addAttribute("saveUserErrors", bindingResult.getAllErrors());
-      return "registrationError";
+      throw new NotValidInputException("bad input", Map.of("saveUserErrors", bindingResult.getAllErrors()));
     }
 
     customerDto.setPassword(globalControllerUtil.encodePassword(customerDto.getPassword()));
@@ -51,10 +53,9 @@ public class CustomerController {
   @PostMapping("/log")
   public String login(@ModelAttribute(name = "userLogin") CustomerDto customerDto, RedirectAttributes redirectAttributes) {
 
-
     CustomerDto customerDtoFromDb = customerService.getUserByEmail(customerDto.getEmailAddress());
     if (customerDtoFromDb == null) {
-      return "userNotFound";
+      throw new UserNotFoundException("User doesn't exist in our DB yet!");
     }
 
     redirectAttributes.addFlashAttribute("userLogin", customerDtoFromDb);

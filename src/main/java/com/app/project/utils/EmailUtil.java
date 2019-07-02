@@ -1,5 +1,6 @@
 package com.app.project.utils;
 
+import com.app.project.dto.ProductDto;
 import com.app.project.exceptions.MailException;
 import com.app.project.model.entity.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,6 @@ import static j2html.TagCreator.*;
 @Slf4j
 public final class EmailUtil {
 
-  /*trzeba tu podać swoj adres email z którego bedą wysłane wiadomosci
-   *
-   *  + byc moze trzeba bedzie dodatkowo skonfigorwac tego gmaila w celu zmniejsza
-   * 'restrykcyjnosci' aby mogl skorzystac z niego zewn API
-   *
-   * */
   private static final String emailAddress = "the.mountain.057@gmail.com";
   private static final String emailPassword = "zupapomidorowa123";
 
@@ -30,7 +25,7 @@ public final class EmailUtil {
   }
 
 
-  private static String createHtmlTable(List<Product> customerProducts) {
+  private static String createHtmlTable(List<ProductDto> customerProducts) {
 
     return
             tbody().with(th("Product name"),
@@ -45,7 +40,7 @@ public final class EmailUtil {
   }
 
 
-  public static void sendAllSummaryTable(String recipient, String subject, List<Product> productList) {
+  public static void sendAllSummaryTable(String recipient, String subject, List<ProductDto> productList) {
     String htmlContent = productList.isEmpty() ? "Jeszcze nic u nas nie kupiłeś." : String.join(h1("Twoje kupione produkty").render(), createHtmlTable(productList));
     sendAsHtml(recipient, subject, htmlContent);
   }
