@@ -2,7 +2,7 @@
 ---
 ### 1. About
 
-An application in a multi-layered architecture that allows you to manage your shopping list. The application provides register and login  functionalities. On the user page, you can enter a list of your purchases in selected categories, and delete them if necessary. Based on the entered data, various shoppping statistics are calculated and presented in charts and tables.
+A simple application in a multi-layered architecture that allows you to manage your shopping list. The application provides register and login  functionalities. On the user page, you can enter a list of your purchases in selected categories, and delete them if necessary. Based on the entered data, various shoppping statistics are calculated and presented in charts and tables.
 
 Home page 
 ![home_page](https://i.imgur.com/01FoDX9.jpg)
@@ -37,3 +37,11 @@ User Page
 * [css ](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) - stylesheet language used to describe the presentation of a document written in HTML
 
 ### 5. How to run it
+
+The easiest and fastest way is to run application with in memory database (h2) configuration (available in the 2nd branch). Finally go to http://localhost:8080/ on your browser. If you want to browse the contents of a database, then after starting the application, you can navigate to http://localhost:8080/h2-console which will present you with a login page. On the login page, you’ll need to supply the same credentials as in the application.properties file: login: admin, pass: admin123
+
+![](https://i.imgur.com/NCVyv4Q.jpg)
+
+Once you connect, you’ll see a comprehensive webpage that lists all the tables on the left side of the page and a textbox for running SQL queries, as shown below:
+
+![](https://i.imgur.com/gKL2I6m.jpg)
