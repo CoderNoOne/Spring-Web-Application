@@ -2,7 +2,7 @@
 ---
 ### 1. About
 
-A simple application in a multi-layered architecture that allows you to manage your shopping list. The application provides register and login  functionalities. On the user page, you can enter a list of your purchases in selected categories, and delete them if necessary. Based on the entered data, various shoppping statistics are calculated and presented in charts and tables.
+A simple application in a multi-layered architecture that allows you to manage your shopping list. The application provides register and login  functionalities. On the user page, you can enter a list of your purchases in selected categories, and delete them if necessary. Based on the entered data, various shoppping statistics are calculated and presented in charts and tables. The application frontend content is written in polish language (due to postgraduate studies requirements). Main pages are presented below:
 
 Home page 
 ![home_page](https://i.imgur.com/01FoDX9.jpg)
@@ -13,7 +13,7 @@ User Page
 
 ### 2. Prerequisities
 
-* JDK 12
+* JRE 12
 * A fully functional database (An open sourced **MySQL DB** was used originally). You can also use in memory database application configuration - it's avilable in the second branch 
 ***
 ### 3. Build with
